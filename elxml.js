@@ -1,5 +1,4 @@
 var builder = require('xmlbuilder');
-var fs = require('fs');
 var _ = require('underscore');
 
 require('node-zip');
@@ -1015,9 +1014,7 @@ Workbook.prototype = {
         }
 
         // create zip
-        var data = zip.generate({base64:false,compression:'DEFLATE'});
-        fs.writeFile(fileName, data, 'binary', cb);
-        return fileName;
+        return zip.generate({base64:false,compression:'DEFLATE'});
     },
     // internal stuff below this line
     _saveContents : function(zipFolder) {
