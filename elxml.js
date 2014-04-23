@@ -128,6 +128,11 @@ exports.CELL_TYPE_STRING   = "inlineStr";
  * @desc formular string type for cells
  */
 exports.CELL_TYPE_FORMULAR   = "str";
+/**
+ * @constant CELL_TYPE_FORMULA
+ * @desc formula string type for cells e.g., SUM(A2:A3)
+ */
+exports.CELL_TYPE_FORMULA   = "fff";
 
 /**
  * Creates a {@linkcode Workbook} instance
@@ -693,7 +698,10 @@ Cell.prototype = {
         if (this.value != null) {
             if (this.type == undefined || this.type == "inlineStr") {
                 ele.ele("is").ele("t").t(this.value);
-            } else {
+            } else if(this.type == exports.CELL_TYPE_FORMULA) {
+                ele.ele("f").t(this.value);
+            }
+            else {
                 ele.ele("v").t(this.value);
             }
         }
